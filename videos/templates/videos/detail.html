@@ -1,0 +1,27 @@
+{% extends 'Home/base.html' %}
+<title>{% block title %}{{video_type.title}} videos{% endblock %}</title>
+{% block videos_active %}active{% endblock %}
+{% block body %}
+     <div class="container">
+         <h2>{{video_type.title}} videos</h2>
+         <table class = 'table' >
+             <thead>
+             <tr>
+                 <th>Name</th>
+                 <th>Video</th>
+             </tr>
+             </thead>
+             <tbody>
+             {% for video in video_type.video_set.all %}
+             <tr>
+                 <td><h3>{{video.name}}</h3></td>
+                 <td><video controls="" height="240" width="320">
+                    <source src="{{ video.file.url}}" type="video/mp4" />
+                 </video>
+                     </td>
+             </tr>
+             {% endfor %}
+             </tbody>
+         </table>
+     </div>
+{% endblock %}

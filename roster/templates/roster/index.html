@@ -1,0 +1,27 @@
+{% extends 'Home/base.html' %}
+<title>{% block title %}Teams page{% endblock %}</title>
+{% block roster_active %}active{% endblock %}
+{% block body %}
+         <div class="container container-fluid">
+             {% for team in object_list %}
+                <div class="col-md-4 col-md-2">
+                    <div class="thumbnail">
+                        <h5>{{ team.team_name }}</h5>
+                        <a href="{% url 'roster:detail' team.id %}">
+
+                            <img src="{{ team.team_logo.url }}" class="img-responsive">
+                        </a>
+                        <div class="caption">
+
+                             <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active"><a href="{% url 'roster:detail' team.id %}">Team page</a></li>
+            </ul>
+
+                            </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+</div>
+{% endblock %}

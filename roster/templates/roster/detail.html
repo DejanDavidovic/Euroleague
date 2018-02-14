@@ -1,0 +1,73 @@
+{% extends 'Home/base.html' %}
+<title>{% block title %}{{team.team_name}} roster{% endblock %}</title>
+{% block roster_active %}active{% endblock %}
+{% block body %}
+<div class="container-fluid container">
+
+    <div class="row">
+
+
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <br class="panel-body">
+                    <a href="{% url 'roster:detail' team.id %}">
+                        {% if team.team_logo %}
+                        <h1>{{ team.team_name }}</h1>
+                            <img src="{{ team.team_logo.url }}" class="img-responsive">
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a></br>
+                    <img src="{{ team.arena_image.url }}" class="img-responsive">
+                        <h3>{{team.arena}}</h3>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-8 col-md-9">
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>{{team.team_name}} players and coach</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Age</th>
+                            <th>Face</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for person in team.person_set.all %}
+                            <tr>
+                                <td>{{ person.person_number }}</td>
+                                <td>{{ person.person_name }}</td>
+                                <td>{{ person.person_position }}</td>
+                                <td>{{ person.person_age }}</td>
+                                <td><img src="{{ person.person_image.url }}" class="img-responsive"></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

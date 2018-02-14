@@ -1,0 +1,93 @@
+{% extends 'Home/base.html' %}
+<title>{% block title %}Player stats{% endblock %}</title>
+{% block players_active %}active{% endblock %}
+{% block body %}
+<div class="container-fluid container">
+
+    <div class="row">
+
+
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <br class="panel-body">
+                    <a href="{% url 'players:detail' player.id %}">
+                        {% if player.player_face %}
+                            <img src="{{ player.player_face.url }}" class="img-responsive">
+
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a>
+
+
+                </div>
+                        <h4>Name : {{ player.player_name }}</h4>
+                        <h4>Team : {{ player.player_team }}</h4>
+                        <h4>Position : {{ player.player_position }}</h4>
+                        <h4>Height : {{ player.player_height }}</h4>
+                        <h4>Nationality : {{ player.player_nationality }}</h4>
+                        <h4>Born : {{ player.date_of_birth }}</h4>
+
+
+
+            </div>
+        </div>
+
+        <div class="col-sm-8 col-md-9">
+
+
+
+
+
+                    <h3>{{player.player_name}}</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>GP</th>
+                            <th>GS</th>
+                            <th>Minutes</th>
+                            <th>Points</th>
+                            <th>2pt%</th>
+                            <th>3pt%</th>
+                            <th>FT%</th>
+                            <th>Rebounds</th>
+                            <th>Assists</th>
+                            <th>Steals</th>
+                            <th>Turnovers</th>
+                            <th>Blocks</th>
+                            <th>Index</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for stat in player.stat_set.all %}
+                            <tr>
+                                <td>{{ stat.games_played }}</td>
+                                <td>{{ stat.games_started }}</td>
+                                <td>{{ stat.minutes }}</td>
+                                <td>{{ stat.points }}</td>
+                                <td>{{ stat.two_point }}</td>
+                                <td>{{ stat.three_point }}</td>
+                                <td>{{ stat.free_throw }}</td>
+                                <td>{{ stat.rebounds }}</td>
+                                <td>{{ stat.assists }}</td>
+                                <td>{{ stat.steals }}</td>
+                                <td>{{ stat.turnovers }}</td>
+                                <td>{{ stat.blocks }}</td>
+                                <td>{{ stat.index }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+
+
+
+{% endblock %}

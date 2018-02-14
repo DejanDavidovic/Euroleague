@@ -1,0 +1,29 @@
+{% extends 'Home/base.html' %}
+{% block title %}Game highlights{% endblock %}
+{% block Home_active %}active{% endblock %}
+{% block body %}
+
+   <div class="container">
+
+         <table class = 'table' >
+             <thead>
+             <tr>
+                 <th>Name</th>
+                 <th>Video</th>
+             </tr>
+             </thead>
+             <tbody>
+             {% for video in round.video_set.all %}
+             <tr>
+                 <td><h3>{{video.video_name}}</h3></td>
+                 <td><video controls="" height="240" width="320">
+                    <source src="{{ video.video_file.url}}" type="video/mp4" />
+                 </video>
+                     </td>
+             </tr>
+             {% endfor %}
+             </tbody>
+         </table>
+     </div>
+
+{% endblock %}

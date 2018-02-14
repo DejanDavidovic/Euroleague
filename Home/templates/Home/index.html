@@ -1,0 +1,23 @@
+{% extends 'Home/base.html' %}
+{% block Home_active %}active{% endblock %}
+{% block body %}
+
+         <div class="container container-fluid">
+             {% for round in object_list %}
+
+                <div class="col-sm-4 col-lg-8">
+
+                        <a href="{% url 'Home:detail' round.id %}">
+                         <h3>{{ round.round_number }}</h3>
+                        </a>
+
+
+
+            </div>
+
+
+        {% endfor %}
+
+
+</div>
+{% endblock %}

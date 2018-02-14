@@ -1,0 +1,23 @@
+{% extends 'Home/base.html' %}
+<title>{% block title %}Videos Page{% endblock %}</title>
+{% block videos_active %}active{% endblock %}
+{% block body %}
+ <div class="container container-fluid">
+             {% for videos in object_list %}
+
+                <div class="col-sm-4 col-lg-8">
+
+                        <a href="{% url 'videos:detail' videos.id %}">
+                         <h3>{{ videos.title }}</h3>
+                        </a>
+
+
+
+            </div>
+
+
+        {% endfor %}
+
+
+</div>
+{% endblock %}
